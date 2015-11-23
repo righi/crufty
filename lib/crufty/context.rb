@@ -2,11 +2,9 @@ require 'date'
 
 module Crufty
   class Context
-    attr_reader :best_by, :expires, :backtrace, :invoked_at, :invoke
+    attr_reader :best_by, :expires, :backtrace, :invoked_at
 
     def initialize(best_by, expires, backtrace=nil)
-      @invoke = true
-
       if datetimeish?(best_by) && datetimeish?(expires)
         @invoked_at = DateTime.now
       elsif timeish?(best_by) && timeish?(expires)
