@@ -31,7 +31,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "timecop"
-  spec.add_development_dependency "activesupport"
-  spec.add_development_dependency "pry", '0.10.1'
-  spec.add_development_dependency "pry-byebug", '2.0.0'
 end
