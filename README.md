@@ -30,22 +30,41 @@ crufty(WARN_AFTER, ERROR_AFTER) do
   # Hacky code goes here
 end
 
-# If you just want the warnings and never want it to error:
+# If you want the warnings without it erroring:
 
 crufty(WARN_AFTER) do
   # Hacky code goes here
 end
-
 
 # Explicit Usage:
 
 crufty(best_by: WARN_AFTER, expires: ERROR_AFTER) do
   # Hacky code goes here
 end
-
-
 ```
 
+The code will run with a warning after the "Best By" date, and it will raise a Crufty::CodeExpired error if run after
+the "Expiration Date".
+
+In a Rails app, warnings are sent via Rollbar.warn, otherwise they will be sent to Std Error.
+
+You can override the default warning and error logic:
+
+```ruby
+Crufty.on_stale do |crufty|
+  # crufty.best_by
+  # crufty.expires
+  # crufty.backtrace
+  # crufty.invoked_at
+end
+
+Crufty.on_expired do |crufty|
+  # crufty.best_by
+  # crufty.expires
+  # crufty.backtrace
+  # crufty.invoked_at
+end
+```
 
 ## Contributing
 
